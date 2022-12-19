@@ -1,0 +1,123 @@
+#include <iostream>
+#include<vector>
+
+using namespace std;
+
+void wypisz(vector<int>n)
+{
+    int i =0; 
+    while(i<n.size())
+    {
+     cout << n[i] << ',';
+     i++;
+    }
+    cout << endl;
+}
+int max(vector<int>n)
+{
+ int max = 0;
+ int i=0;
+ while(i<n.size())
+    {
+     if(max<n[i])  {max=n[i];}
+     i++;
+    }
+return max;
+}
+
+bool CzyNalezy(vector<int>n,int el)
+{
+ int i=0;    
+ while(i<n.size())
+    {
+     if(n[i]==el) 
+        {
+            return true;
+        }
+        i++;
+    }
+    return false;
+}
+
+bool CzyZawiera (vector<int>n1,vector<int>n2)
+{
+ int i=0;
+ while(i<n2.size())
+    {
+     if(!CzyNalezy(n1,n2[i])) 
+        {
+            return false;
+        }
+        i++;
+    }
+    return true;
+}
+
+vector<int>Unikalne(vector<int>n)
+{
+ vector<int>w;
+ int i=0;
+ while(i<n.size())
+    {
+     if(!CzyNalezy(w,n[i]))
+        {
+         w.push_back(n[i]);
+        }  
+     i++;
+    }
+ return w;
+}
+
+int suma(vector<int>n,int i=0)
+{
+ int w=0;
+ while(i<n.size())
+    {
+     w += n[i];
+     i++;
+    }
+ return w;
+}
+
+double srednia(vector<int>n)
+{
+ double w = suma(n);
+ return w / n.size(); 
+}
+
+
+vector<int>podzielne(vector<int>n,int dzelnik,int reszta=0,int i=0)
+{
+ vector<int>w;
+ while(i<n.size())
+    {
+     if(n[i] % dzelnik == reszta)
+        {
+         w.push_back(n[i]);
+        }
+        i++;
+    }
+    return w;
+}
+
+int main()
+{
+vector<int>tab{2,5,8,4,3,2,8};
+int element =4;
+
+wypisz(tab);
+
+vector<int>tab1{4,6,3,1,1,8};
+vector<int>tab2{4,3,6,};
+
+cout << max(tab) << endl;
+cout << CzyNalezy(tab,element) << endl;
+cout << CzyZawiera(tab1,tab2) << endl;
+
+wypisz(Unikalne(tab));
+
+cout << suma(tab) << endl;
+cout << srednia(tab) << endl;
+wypisz(podzielne(tab,4));
+ return 0;
+}

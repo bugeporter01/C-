@@ -1,0 +1,122 @@
+//1. wymyślenie przykładu
+//2. upewnienie się czy przykład jest kompletny
+//3. wypisanie przykładu
+//4. header
+//5. Body
+//6. Nie dziala? wroc do punktu 1.
+
+#include<iostream>
+#include<vector>
+using namespace std;
+
+void wypisz(vector<int>n)
+{
+    for(int i=0; i<n.size();i++)
+    {
+        cout << n[i] << ',';
+    }
+}
+
+int max(vector<int>n)
+{
+    int wynik =0;
+    for(int i=0; i<n.size();i++)
+    {
+        if(wynik<n[i])
+        {
+            wynik = n[i];
+        }
+    }
+    return wynik;
+}
+
+bool CzyNalezy(vector<int>n,int el)
+{
+    for(int i=0; i<n.size();i++)
+    {
+        if(n[i]==el)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+bool CzyZawiera(vector<int>n1,vector<int>n2)
+{
+    for(int i=0; i<n2.size();i++)
+    {
+        if(!CzyNalezy(n1,n2[i]))
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+vector<int>Unikalne(vector<int>n)
+{
+    vector<int>w;
+    for(int i=0; i<n.size();i++)
+    {
+        if(!CzyNalezy(w,n[i]))
+        {
+            w.push_back(n[i]);
+        }
+    }
+    return w;
+}
+
+
+int suma(vector<int>n)
+{
+    int wynik=0;
+    for(int i=0; i<n.size();i++)
+    {
+        wynik+=n[i];
+    }
+    return wynik;
+}
+
+int srednia(vector<int>n)
+{
+    int wynik = suma(n);
+    return wynik / n.size();
+}
+vector<int>Podzielne(vector<int>n,int dzielnik,int reszta=0)
+{
+    vector<int>wynik;
+    for(int i=0; i<n.size();i++)
+    {
+        if(n[i] % dzielnik ==reszta)
+        {
+            wynik.push_back(n[i]);
+        }
+    }
+    return wynik;
+}
+
+int main()
+{
+    
+vector<int>tab{1,2,6,3,4,6,8,2};    
+    
+    
+cout << max(tab) << endl;
+int element =4;
+cout << CzyNalezy(tab,element) << " CzyNalezy" << endl;
+
+vector<int>tab1{2,4,6,8,3,8,7};
+vector<int>tab2{2,4,8};
+
+wypisz(Unikalne(tab));
+cout << " Unikalne" << endl;
+
+cout << suma(tab) << " Suma" << endl;
+cout << srednia(tab) << " Srednia" << endl;
+
+wypisz(Podzielne(tab1,element));
+cout << " Podzielne";
+
+return 0;
+}
+

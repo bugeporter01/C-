@@ -1,0 +1,133 @@
+//1.Wymyślić Przykład
+//2.Sprawdzić czy jest kompletny
+//3.Sformalizowanie przykładu
+//4.Nagłówek funkjci
+//5.Ciało funkcji
+//6.Nadal żle? wróć do 1 punktu
+
+
+#include<iostream>
+#include <vector>
+
+using namespace std;
+
+void wypisz(vector<int>n)
+{
+    for(int i = 0; i<n.size(); i++)
+    {
+        cout << n[i] <<",";
+    }
+    cout << endl;
+}
+
+int max(vector<int>n)
+{
+int max = 0;
+for (int i=0; i<n.size();i++)
+    {
+        if(n[i]>max)  
+            {
+                n[i]=max;
+            }
+    }
+    return max;
+}
+
+bool czyNalezy(vector<int>n,int el)
+{
+    for(int i =0; i<n.size();i++)
+    {
+        if(n[i]==el)
+            {
+                return true;            
+            }
+    }
+    return false;
+}
+
+bool czyZawiera(vector<int>n1,vector<int>n2)
+{
+    for(int i=0;i<n2.size();i++)
+        {
+            if(!czyNalezy(n1,n2[i])) 
+                {
+                return false;
+                }
+        }
+    return true;
+}
+
+vector<int>unikalne(vector<int>n)
+{
+    vector<int>wynik;
+    {
+        for(int i=0; i<n.size();i++)
+        {
+            if(!czyNalezy(wynik,n[i]))
+                {
+                 wynik.push_back(n[i]);
+                }
+        }    
+    }
+    return wynik;
+}
+
+int suma(vector<int>n)
+    {
+    int wynik=0;
+    for(int i=0;i<n.size();i++)
+        {
+            wynik += n[i];
+        }
+    return wynik;
+    }
+
+double srednia(vector<int>n)
+    {
+     double wynik = suma(n);
+     return wynik / n.size();   
+    }
+
+vector<int>podzielne(vector<int>n,int dzielnik, int reszta =0)
+    {
+     vector<int>wynik;
+     for(int i =0; i<n.size(); i++)
+        {
+         if(n[i] % dzielnik == reszta) 
+            {
+             wynik.push_back(n[i]);
+            }       
+        }
+     return wynik;
+    }
+
+int main()
+{
+vector<int>tab ={2,5,8,4,3,2,8};
+int element =4;
+wypisz(tab);
+
+vector<int>tab1 ={4,6,3,1,1,8};
+vector<int>tab2 ={4,3,6};
+
+cout << max(tab) << endl;
+cout << czyZawiera(tab1,tab2) << endl;
+
+vector<int>tabu = unikalne(tab);
+wypisz(unikalne(tab));
+cout << suma(tab) << endl;
+cout << srednia(tab) << endl;
+wypisz(podzielne(tab,4));
+
+}
+
+
+
+
+
+
+
+
+
+
+
